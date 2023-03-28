@@ -11,6 +11,11 @@ const optionSchema = new mongoose.Schema({
     },
     link: {
         type: String
+    },
+    question: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Question',
+        required: true
     }
 },{
     timestamps: true
