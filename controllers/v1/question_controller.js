@@ -1,4 +1,5 @@
 const Question = require('../../models/question');
+const Option = require('../../models/option');
 
 module.exports.createQuestion = async function(req, res){
     try {
@@ -29,6 +30,9 @@ module.exports.delete = async function(req, res){
             }
         }
         if(temp > 0){
+            for(let option of question.options){
+                await Option.findByIdAndDelete(option._id);
+            }
             await Question.findByIdAndDelete(req.query.id);
         }
         return res.status(200).json({
